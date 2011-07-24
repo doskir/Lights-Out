@@ -7,14 +7,25 @@ namespace Lights_Out
     {
         public int Rows;
         public int Columns;
+        public bool _playing;
         public void Initialize(int rows,int columns)
         {
+            _playing = false;
             Rows = rows;
             Columns = columns;
             foreach (Light light in Lights)
                 Controls.Remove(light);
             Lights = MakeLights(rows, columns);
-            
+            //randomize the board
+            Random rand = new Random();
+            for(int i = 0;i <= 100;i++)
+            {
+                int row = rand.Next(0, rows);
+                int column = rand.Next(0, columns);
+                LightClicked(Lights[row, column]);
+            }
+            _playing = true;
+
         }
 
         internal Light[,] Lights = new Light[5,5];
@@ -22,6 +33,8 @@ namespace Lights_Out
         {
             get
             {
+                if (!_playing)
+                    return false;
                 foreach (Light light in Lights)
                     if (light.Lit)
                         return false;
@@ -30,16 +43,14 @@ namespace Lights_Out
         }
         private Light[,] MakeLights(int rows, int columns)
         {
-            Random rand = new Random();
-            var lights = new Light[5, 5];
+            var lights = new Light[rows,columns];
             int heightPerLight = Height / rows;
             int widthPerLight = Width / columns;
             for (int row = 0; row < rows; row++)
                 for (int column = 0; column < columns; column++)
                 {
-                    bool lit = rand.NextDouble() >= 0.5;
                     var light = new Light(row, column, heightPerLight, widthPerLight,
-                                          lit);
+                                          false);
                     lights[row, column] = light;
                     Controls.Add(light);
                 }

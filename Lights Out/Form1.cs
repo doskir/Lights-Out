@@ -25,7 +25,7 @@ namespace Lights_Out
         }
         public void NewGame()
         {
-            board1.Initialize(5, 5);
+            board1.Initialize(5,5);
             winLabel.Text = "";
         }
 

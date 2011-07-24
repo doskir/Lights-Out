@@ -30,7 +30,7 @@ namespace Lights_Out
         private bool _lit;
         public int Row;
         public int Column;
-        public Light(int column,int row,int height,int width,bool lit)
+        public Light(int row,int column,int height,int width,bool lit)
         {
             Left = column*height;
             Top = row*height;

@@ -28,13 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.board1 = new Lights_Out.Board();
             this.SuspendLayout();
+            // 
+            // board1
+            // 
+            this.board1.Location = new System.Drawing.Point(13, 13);
+            this.board1.Name = "board1";
+            this.board1.Size = new System.Drawing.Size(500, 500);
+            this.board1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(527, 479);
+            this.ClientSize = new System.Drawing.Size(697, 521);
+            this.Controls.Add(this.board1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,6 +51,10 @@
         }
 
         #endregion
+
+        private Board board1;
+
+
     }
 }
 

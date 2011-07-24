@@ -14,6 +14,9 @@ namespace Lights_Out
         public Form1()
         {
             InitializeComponent();
+            board1.Initialize(5, 5);
         }
+
+
     }
 }

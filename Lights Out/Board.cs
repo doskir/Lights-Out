@@ -11,6 +11,16 @@ namespace Lights_Out
             
         }
         internal Light[,] Lights;
+        public bool Solved
+        {
+            get
+            {
+                foreach (Light light in Lights)
+                    if (light.Lit)
+                        return false;
+                return true;
+            }
+        }
         private Light[,] MakeLights(int rows, int columns)
         {
             Random rand = new Random();
@@ -30,7 +40,8 @@ namespace Lights_Out
         }
         public void LightClicked(Light light)
         {
-            light.Toggle();
+            if (!Solved)
+                light.Toggle();
         }
 
     }

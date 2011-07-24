@@ -14,7 +14,24 @@ namespace Lights_Out
         public Form1()
         {
             InitializeComponent();
+            NewGame();
+            
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            if (board1.Solved)
+                winLabel.Text = "YOU WIN!";
+        }
+        public void NewGame()
+        {
             board1.Initialize(5, 5);
+            winLabel.Text = "";
+        }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            NewGame();
         }
 
 

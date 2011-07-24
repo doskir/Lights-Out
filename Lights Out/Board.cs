@@ -5,12 +5,19 @@ namespace Lights_Out
 {
     class Board : System.Windows.Forms.Panel
     {
+        public int Rows;
+        public int Columns;
         public void Initialize(int rows,int columns)
         {
+            Rows = rows;
+            Columns = columns;
+            foreach (Light light in Lights)
+                Controls.Remove(light);
             Lights = MakeLights(rows, columns);
             
         }
-        internal Light[,] Lights;
+
+        internal Light[,] Lights = new Light[5,5];
         public bool Solved
         {
             get
@@ -41,7 +48,23 @@ namespace Lights_Out
         public void LightClicked(Light light)
         {
             if (!Solved)
+            {
                 light.Toggle();
+                //neighbours
+                
+                //above
+                if (light.Row > 0)
+                    Lights[light.Row - 1, light.Column].Toggle();
+                //below
+                if (light.Row < Rows - 1)
+                    Lights[light.Row + 1, light.Column].Toggle();
+                //left
+                if (light.Column > 0)
+                    Lights[light.Row, light.Column - 1].Toggle();
+                //right
+                if (light.Column < Columns - 1)
+                    Lights[light.Row, light.Column + 1].Toggle();
+            }
         }
 
     }
